@@ -23,7 +23,7 @@ class TasksController < ApplicationController
       redirect_to @task
     else
       flash.now[:danger] = "Taskが作成されませんでした"
-      render 'tasks/index'
+      render 'tasks/new'
     end
   end
 
