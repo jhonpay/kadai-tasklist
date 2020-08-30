@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
+  before_action :set_task, only:[:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
   
   def index
-      @task = current_user.tasks.build
       @tasks = current_user.tasks.order(id: :desc)
   end
 
@@ -50,8 +50,11 @@ class TasksController < ApplicationController
     params.require(:task).permit(:content, :status)
   end
   
+  def set_task
+     @task = current_user.tasks.find_by(id: params[:id])
+  end
   def correct_user
-    @task = current_user.tasks.find_by(id: params[:id])
+   
     unless @task
       redirect_to('/')
     end
