@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
-  before_action :set_task, only:[:show, :edit, :update, :destroy]
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
   
   def index
@@ -22,14 +21,14 @@ class TasksController < ApplicationController
       render :new
     end
   end
+  
+  def show
+  end
 
   def edit
-    
   end
 
   def update
-    
-    
     if @task.update(task_params)
       flash[:success] = 'Task は正常に更新されました'
       redirect_to @task
@@ -37,7 +36,6 @@ class TasksController < ApplicationController
       flash.now[:danger] = 'Task は更新されませんでした'
       render :edit
     end
-    
   end
 
   def destroy
@@ -47,10 +45,6 @@ class TasksController < ApplicationController
   end
   
   private
-  
-  def set_task
-    @task = Task.find(params[:id])
-  end
   
   def task_params
     params.require(:task).permit(:content, :status)

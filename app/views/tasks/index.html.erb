@@ -2,11 +2,11 @@
   <h1>タスク一覧</h1>
    <ul>
     <% @tasks.each do |task| %>
-      <li><%= link_to task.id %> : <%= task.content %> : <%= task.status %></li>
+      <li><%= link_to task.id, task %> : <%= task.content %> : <%= task.status %></li>
     <% end %>
   </ul>
   
-  <%= link_to '新規タスクの作成', new_task_path %>
+ 　 <%= link_to '新規タスクの作成', new_task_path %>
   
     <div>
      <%= link_to 'ログアウト', logout_path, method: :delete %>
